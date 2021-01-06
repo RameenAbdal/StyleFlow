@@ -57,7 +57,7 @@ StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NV
 	python main.py
     ```
 
-2. Run the Attribute transfer UI
+2. Run the Attribute Transfer UI
 	```bash
    python main_attribute.py 
     ```
