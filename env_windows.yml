@@ -13,8 +13,6 @@ dependencies:
   - certifi=2020.12.5=py36haa95532_0
   - cffi=1.14.0=py36h7a1dbc1_0
   - cloudpickle=1.4.1=py_0
-  - cudatoolkit=10.0.130=0
-  - cudnn=7.6.5=cuda10.0_0
   - cycler=0.10.0=py36h009560c_0
   - cytoolz=0.10.1=py36he774522_0
   - dask-core=2.16.0=py_0
@@ -53,7 +51,6 @@ dependencies:
   - pyqt=5.9.2=py36h6538335_2
   - python=3.6.7=h33f27b4_1
   - python-dateutil=2.8.1=py_0
-  - pytorch=1.2.0=py3.6_cuda100_cudnn7_1
   - pytz=2020.1=py_0
   - pywavelets=1.1.1=py36he774522_0
   - qt=5.9.7=vc14h73c81de_0
