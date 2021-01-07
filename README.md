@@ -35,7 +35,7 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 ```bash
 conda env create -f environment.yml
 ```
-StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To corrrectly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).  
+StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).  
 
 
 ## UI Illustration
