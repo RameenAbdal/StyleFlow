@@ -6,6 +6,20 @@
 ![Torchdiffeq 0.0.1](https://img.shields.io/badge/Torchdiffeq-0.0.1-green.svg?style=plastic)
 ![pyqt5 5.13.0](https://img.shields.io/badge/pyqt5-5.13.0-green.svg?style=plastic)
 
+**This repo adds Docker support to this project (CUDA 10.2, CUDNN7)**
+
+First, please run :
+
+```
+xhost +local:$(id -un)
+```
+
+When finished, run :
+
+```
+xhost -local:$(id -un)
+```
+
 ![image](./docs/assets/teaser.png)
 **Figure:** *Sequential edits using StyleFlow*
 
