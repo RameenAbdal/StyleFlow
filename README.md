@@ -53,7 +53,7 @@ Then, run :
 xhost +local:$(id -un) # enabling screen
 cd stylegan
 wget http://d36zk2xti64re0.cloudfront.net/stylegan2/networks/stylegan2-ffhq-config-f.pkl
-docker-compose up --build # expect a lot of time before build and UI appears
+docker-compose up --build # expect some time before build and UI appears
 ```
 
 When finished, run :
