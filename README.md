@@ -96,4 +96,4 @@ If you use this research/codebase, please cite our papers.
   doi={10.1109/ICCV.2019.00453}}
 ```
 ## Acknowledgments
-This implementation builds upon the awesome work done by Karras et. al ([StyleGAN2](https://github.com/NVlabs/stylegan2)), Chen et. al ([torchdiffeq](https://github.com/rtqichen/torchdiffeq)) and Yang et. al ([PointFlow](https://arxiv.org/abs/1906.12320)). This work was supported by Adobe Research and KAUST Office of Sponsored Research (OSR).
+This implementation builds upon the awesome work done by Karras et al. ([StyleGAN2](https://github.com/NVlabs/stylegan2)), Chen et al. ([torchdiffeq](https://github.com/rtqichen/torchdiffeq)) and Yang et al. ([PointFlow](https://arxiv.org/abs/1906.12320)). This work was supported by Adobe Research and KAUST Office of Sponsored Research (OSR).
