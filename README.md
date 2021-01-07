@@ -33,7 +33,11 @@ cd StyleFlow/
 
 This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please install dependencies by
 ```bash
-conda env create -f env_windows.yml
+1. conda env create -f env_windows.yml
+
+2. conda activate styleflow
+
+3. conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch <<--- Important
 ```
 StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).  
 
