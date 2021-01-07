@@ -190,7 +190,8 @@ class Build_model:
     def __init__(self, opt):
 
         self.opt = opt
-        network_pkl = self.opt.network_pkl
+        #network_pkl = self.opt.network_pkl
+        network_pkl = "/usr/app/stylegan/stylegan2-ffhq-config-f.pkl" # Local load, avoiding to re-download 300Mb each time
         print('Loading networks from "%s"...' % network_pkl)
         _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
         self.Gs = Gs
