@@ -12,6 +12,7 @@ import numpy as np
 import PIL.Image
 import dnnlib
 import dnnlib.tflib as tflib
+import os
 import re
 import sys
 
@@ -190,7 +191,11 @@ class Build_model:
     def __init__(self, opt):
 
         self.opt = opt
-        network_pkl = self.opt.network_pkl
+        if os.path.exists("/usr/app/stylegan/stylegan2-ffhq-config-f.pkl"):
+            print("Found local StyleGan2 !")
+            network_pkl = "/usr/app/stylegan/stylegan2-ffhq-config-f.pkl" # Local load, avoiding to re-download 360Mb each time
+        else:
+            network_pkl = self.opt.network_pkl
         print('Loading networks from "%s"...' % network_pkl)
         _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
         self.Gs = Gs
