@@ -38,6 +38,10 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 2. conda activate styleflow
 
 3. conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch <<--- Important
+
+4. make sure to add Microsoft Visual Studio to windows path [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
+
+5. add compiler_bindir_search_path inside custom_ops.py located here ====>> dnnlib\tflib [eg: ('C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.10.25017/bin/HostX64/x64',)]
 ```
 StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).  
 
