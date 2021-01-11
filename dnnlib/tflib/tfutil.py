@@ -83,7 +83,7 @@ def absolute_variable_scope(scope: str, **kwargs) -> tf.variable_scope:
 
 def _sanitize_tf_config(config_dict: dict = None) -> dict:
     # Defaults.
-    cfg = dict()
+    cfg = {}
     cfg["rnd.np_random_seed"]               = None      # Random seed for NumPy. None = keep as is.
     cfg["rnd.tf_random_seed"]               = "auto"    # Random seed for TensorFlow. 'auto' = derive from NumPy random state. None = keep as is.
     cfg["env.TF_CPP_MIN_LOG_LEVEL"]         = "1"       # 0 = Print all available debug info from TensorFlow. 1 = Print warnings and errors, but disable debug info.

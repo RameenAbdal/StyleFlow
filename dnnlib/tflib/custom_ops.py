@@ -84,7 +84,7 @@ def _prepare_nvcc_cli(opts):
 #----------------------------------------------------------------------------
 # Main entry point.
 
-_plugin_cache = dict()
+_plugin_cache = {}
 
 def get_plugin(cuda_file):
     cuda_file_base = os.path.basename(cuda_file)
