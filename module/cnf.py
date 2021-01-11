@@ -25,10 +25,9 @@ class SequentialFlow(nn.Module):
                 # print(x.shape)
                 x = self.chain[i](x, context, logpx, integration_times, reverse)
             return x
-        else:
-            for i in inds:
-                x, logpx = self.chain[i](x, context, logpx, integration_times, reverse)
-            return x, logpx
+        for i in inds:
+            x, logpx = self.chain[i](x, context, logpx, integration_times, reverse)
+        return x, logpx
 
 
 class CNF(nn.Module):
@@ -115,8 +114,7 @@ class CNF(nn.Module):
 
         if logpx is not None:
             return z_t, logpz_t
-        else:
-            return z_t
+        return z_t
 
     def num_evals(self):
         return self.odefunc._num_evals.item()

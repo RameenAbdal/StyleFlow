@@ -129,10 +129,9 @@ def get_path_from_template(path_template: str, path_type: PathType = PathType.AU
     # return correctly formatted path
     if path_type == PathType.WINDOWS:
         return str(pathlib.PureWindowsPath(path_template))
-    elif path_type == PathType.LINUX:
+    if path_type == PathType.LINUX:
         return str(pathlib.PurePosixPath(path_template))
-    else:
-        raise RuntimeError("Unknown platform")
+    raise RuntimeError("Unknown platform")
 
 
 def get_template_from_path(path: str) -> str:
@@ -158,9 +157,9 @@ def get_user_name():
     """Get the current user name."""
     if _user_name_override is not None:
         return _user_name_override
-    elif platform.system() == "Windows":
+    if platform.system() == "Windows":
         return os.getlogin()
-    elif platform.system() == "Linux":
+    if platform.system() == "Linux":
         try:
             import pwd
             return pwd.getpwuid(os.geteuid()).pw_name
