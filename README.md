@@ -87,6 +87,18 @@ xhost -local:docker
    python main_attribute.py 
     ```
 
+## Web UI (Beta)
+A web based UI is also now available. The WebUI is based on [Streamlit](https://www.streamlit.io/) framework and is still in development phase. To get started, install streamlit from pip:
+```bash
+pip install streamlit
+```
+Then run the streamlit app located under webui/ folder as follows:
+```bash
+cd webui
+streamlit run app.py
+```
+This should automatically open a new browser tab with the UI.
+
 
 ## Training New Model
 
