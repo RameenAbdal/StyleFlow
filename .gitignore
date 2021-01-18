@@ -1,2 +1,6 @@
 stylegan/
 !stylegan/.gitkeep
+.idea/
+webui/.stylegan2-cache/
+*.pyc
+dnnlib/tflib/_cudacache/

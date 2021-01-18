@@ -14,30 +14,41 @@ import hashlib
 import tempfile
 import shutil
 import tensorflow as tf
-from tensorflow.python.client import device_lib # pylint: disable=no-name-in-module
+from tensorflow.python.client import device_lib  # pylint: disable=no-name-in-module
 
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
 # Global options.
 
 cuda_cache_path = os.path.join(os.path.dirname(__file__), '_cudacache')
 cuda_cache_version_tag = 'v1'
-do_not_hash_included_headers = False # Speed up compilation by assuming that headers included by the CUDA code never change. Unsafe!
-verbose = True # Print status messages to stdout.
+do_not_hash_included_headers = False  # Speed up compilation by assuming that headers included by the CUDA code never change. Unsafe!
+verbose = True  # Print status messages to stdout.
 
 compiler_bindir_search_path = [
     'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428/bin/Hostx64/x64',
+    'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.16.27023/bin/Hostx64/x64',
     'C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64',
     'C:/Program Files (x86)/Microsoft Visual Studio 14.0/vc/bin',
 ]
 
-#----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
 # Internal helper funcs.
 
 def _find_compiler_bindir():
+    # Derive MSVC compiler path from compiler_bindir_search_path array
     for compiler_path in compiler_bindir_search_path:
         if os.path.isdir(compiler_path):
             return compiler_path
+
+    # Derive MSVC compiler path from subdirectory tree
+    subdirectory_paths = [x[0] for x in os.walk('C:\\Program Files (x86)\\Microsoft Visual Studio\\')];
+    if subdirectory_paths is not None:
+        for directory_path in subdirectory_paths:
+            if _compiler_path_validator(directory_path):
+                return directory_path
     return None
+
 
 def _get_compute_cap(device):
     caps_str = device.physical_device_desc
@@ -46,6 +57,7 @@ def _get_compute_cap(device):
     minor = m.group(2)
     return (major, minor)
 
+
 def _get_cuda_gpu_arch_string():
     gpus = [x for x in device_lib.list_local_devices() if x.device_type == 'GPU']
     if len(gpus) == 0:
@@ -53,17 +65,18 @@ def _get_cuda_gpu_arch_string():
     (major, minor) = _get_compute_cap(gpus[0])
     return 'sm_%s%s' % (major, minor)
 
+
 def _run_cmd(cmd):
     with os.popen(cmd) as pipe:
         output = pipe.read()
         status = pipe.close()
     if status is not None:
-        raise RuntimeError('NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
+        raise RuntimeError(
+            'NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
+
 
 def _prepare_nvcc_cli(opts):
-    # cmd = 'nvcc ' + opts.strip()
-    cmd = '/usr/local/cuda/bin/nvcc --std=c++11 -DNDEBUG ' + opts.strip()
-
+    cmd = 'nvcc ' + opts.strip()
     cmd += ' --disable-warnings'
     cmd += ' --include-path "%s"' % tf.sysconfig.get_include()
     cmd += ' --include-path "%s"' % os.path.join(tf.sysconfig.get_include(), 'external', 'protobuf_archive', 'src')
@@ -75,16 +88,33 @@ def _prepare_nvcc_cli(opts):
         # Require that _find_compiler_bindir succeeds on Windows.  Allow
         # nvcc to use whatever is the default on Linux.
         if os.name == 'nt':
-            raise RuntimeError('Could not find MSVC/GCC/CLANG installation on this computer. Check compiler_bindir_search_path list in "%s".' % __file__)
+            raise RuntimeError(
+                'Could not find MSVC/GCC/CLANG installation on this computer. Check compiler_bindir_search_path list in "%s".' % __file__)
     else:
         cmd += ' --compiler-bindir "%s"' % compiler_bindir
     cmd += ' 2>&1'
     return cmd
 
-#----------------------------------------------------------------------------
+
+def _compiler_path_validator(path):
+    if path is not None:
+        if path[:76] == 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\' and path[
+                                                                                                                   -16:] == '\\bin\\Hostx64\\x64':
+            return True
+        elif path[
+             :76] == 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\' and path[
+                                                                                                                -16:] == '\\bin\\Hostx64\\x64':
+            return True
+        elif path == 'C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\vc\\bin':
+            return True
+    return False
+
+
+# ----------------------------------------------------------------------------
 # Main entry point.
 
 _plugin_cache = dict()
+
 
 def get_plugin(cuda_file):
     cuda_file_base = os.path.basename(cuda_file)
@@ -110,12 +140,14 @@ def get_plugin(cuda_file):
                 print('Preprocessing... ', end='', flush=True)
             with tempfile.TemporaryDirectory() as tmp_dir:
                 tmp_file = os.path.join(tmp_dir, cuda_file_name + '_tmp' + cuda_file_ext)
-                _run_cmd(_prepare_nvcc_cli('"%s" --preprocess -o "%s" --keep --keep-dir "%s"' % (cuda_file, tmp_file, tmp_dir)))
+                _run_cmd(_prepare_nvcc_cli(
+                    '"%s" --preprocess -o "%s" --keep --keep-dir "%s"' % (cuda_file, tmp_file, tmp_dir)))
                 with open(tmp_file, 'rb') as f:
-                    bad_file_str = ('"' + cuda_file.replace('\\', '/') + '"').encode('utf-8') # __FILE__ in error check macros
+                    bad_file_str = ('"' + cuda_file.replace('\\', '/') + '"').encode(
+                        'utf-8')  # __FILE__ in error check macros
                     good_file_str = ('"' + cuda_file_base + '"').encode('utf-8')
                     for ln in f:
-                        if not ln.startswith(b'# ') and not ln.startswith(b'#line '): # ignore line number pragmas
+                        if not ln.startswith(b'# ') and not ln.startswith(b'#line '):  # ignore line number pragmas
                             ln = ln.replace(bad_file_str, good_file_str)
                             md5.update(ln)
                     md5.update(b'\n')
@@ -128,7 +160,7 @@ def get_plugin(cuda_file):
             compile_opts += '"%s"' % os.path.join(tf.sysconfig.get_lib(), 'python', '_pywrap_tensorflow_internal.so')
             compile_opts += ' --compiler-options \'-fPIC -D_GLIBCXX_USE_CXX11_ABI=0\''
         else:
-            assert False # not Windows or Linux, w00t?
+            assert False  # not Windows or Linux, w00t?
         compile_opts += ' --gpu-architecture=%s' % _get_cuda_gpu_arch_string()
         compile_opts += ' --use_fast_math'
         nvcc_cmd = _prepare_nvcc_cli(compile_opts)
@@ -148,9 +180,10 @@ def get_plugin(cuda_file):
                 tmp_file = os.path.join(tmp_dir, cuda_file_name + '_tmp' + bin_file_ext)
                 _run_cmd(nvcc_cmd + ' "%s" --shared -o "%s" --keep --keep-dir "%s"' % (cuda_file, tmp_file, tmp_dir))
                 os.makedirs(cuda_cache_path, exist_ok=True)
-                intermediate_file = os.path.join(cuda_cache_path, cuda_file_name + '_' + uuid.uuid4().hex + '_tmp' + bin_file_ext)
+                intermediate_file = os.path.join(cuda_cache_path,
+                                                 cuda_file_name + '_' + uuid.uuid4().hex + '_tmp' + bin_file_ext)
                 shutil.copyfile(tmp_file, intermediate_file)
-                os.rename(intermediate_file, bin_file) # atomic
+                os.rename(intermediate_file, bin_file)  # atomic
 
         # Load.
         if verbose:
@@ -168,4 +201,4 @@ def get_plugin(cuda_file):
             print('Failed!', flush=True)
         raise
 
-#----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
