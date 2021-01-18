@@ -99,6 +99,7 @@ streamlit run app.py
 ```
 This should automatically open a new browser tab with the UI.
 
+![image](./docs/assets/styleflow-web-final.gif)
 
 ## Training New Model
 
