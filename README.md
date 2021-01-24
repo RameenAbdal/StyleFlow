@@ -89,7 +89,7 @@ xhost -local:docker
 
 
 ## Training New Model
-Dataset containing sampled StyleGAN2 Latents, Lighting SH parameters and the attributes ([Download Here](https://drive.google.com/file/d/1ISlGiys184wHO5nBB6dIVCrQHYe7QEpY/view?usp=sharing))
+Dataset containing sampled StyleGAN2 latents, lighting SH parameters and other attributes. ([Download Here](https://drive.google.com/file/d/1ISlGiys184wHO5nBB6dIVCrQHYe7QEpY/view?usp=sharing))
 
 Training code: To be added
 
