@@ -88,7 +88,7 @@ xhost -local:docker
     ```
 
 ## Web UI (Beta)
-A web based UI is also now available. Follow [webui](https://github.com/RameenAbdal/StyleFlow/tree/webui) dev branch to setup.
+A web based UI is also now available. Follow [webui](https://github.com/RameenAbdal/StyleFlow/tree/webui) dev branch for setup.
 
 ![image](./docs/assets/styleflow-web-final.gif)
 
