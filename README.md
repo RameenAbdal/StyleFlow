@@ -89,8 +89,9 @@ xhost -local:docker
 
 
 ## Training New Model
+Dataset containing sampled StyleGAN2 Latents, Lighting SH parameters and the attributes ([Download Here](https://drive.google.com/file/d/1ISlGiys184wHO5nBB6dIVCrQHYe7QEpY/view?usp=sharing))
 
-To be added
+Training code: To be added
 
 
 
@@ -99,7 +100,7 @@ To be added
 All rights reserved. Licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) (**Attribution-NonCommercial-ShareAlike 4.0 International**). The code is released for academic research use only.
 
 ## Citation
-If you use this research/codebase, please cite our papers.
+If you use this research/codebase/dataset, please cite our papers.
 ```
 @article{abdal2020styleflow,
   title={Styleflow: Attribute-conditioned exploration of stylegan-generated images using conditional continuous normalizing flows},
