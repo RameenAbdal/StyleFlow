@@ -36,7 +36,7 @@ cd StyleFlow/
 
 This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please install dependencies by
 ```bash
-1. conda env create -f env_windows.yml
+1. conda env create -f env_windows.yml (Install anaconda: [Download Anaconda 64-Bit Graphical Installer](https://www.anaconda.com/products/individual)
 
 2. conda activate styleflow
 
@@ -44,7 +44,8 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 
 4. make sure to add Microsoft Visual Studio to windows path [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
 
-5. add compiler_bindir_search_path inside custom_ops.py located here ====>> dnnlib\tflib [eg: ('C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.10.25017/bin/HostX64/x64',)]
+5. add compiler_bindir_search_path inside custom_ops.py open this folder inside the StyleFlow-Windows-10 folder  ==>> dnnlib\tflib 
+[eg: ('C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.10.25017/bin/HostX64/x64',)]
 ```
 
 StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).
