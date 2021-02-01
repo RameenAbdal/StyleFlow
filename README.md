@@ -43,6 +43,7 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 
 3. conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch <<--- Important 
                                                                                      [Also available here:(https://pytorch.org/get-started/previous-versions/)]
+										     
 4. Download and Install MICROSOFT VISUAL STUDIO COMMUNITY 2017   (https://visualstudio.microsoft.com/vs/older-downloads/)
    Make sure to add Microsoft Visual Studio to windows path [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
 
