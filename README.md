@@ -36,7 +36,8 @@ cd StyleFlow/
 
 This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please install dependencies by
 ```bash
-1. conda env create -f env_windows.yml (Install anaconda: [Download Anaconda 64-Bit Graphical Installer](https://www.anaconda.com/products/individual)
+1. conda env create -f env_windows.yml (Install anaconda: [Download Anaconda 64-Bit Graphical Installer]
+                                                          <https://www.anaconda.com/products/individual>
 
 2. conda activate styleflow
 
