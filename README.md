@@ -44,10 +44,12 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 3. conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
    [Also available here:(https://pytorch.org/get-started/previous-versions/)]
 										     
-4. Download and Install MICROSOFT VISUAL STUDIO COMMUNITY 2017   (https://visualstudio.microsoft.com/vs/older-downloads/)
-   Make sure to add Microsoft Visual Studio to windows path [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
+4. Download and Install MICROSOFT VISUAL STUDIO COMMUNITY 2017: [https://visualstudio.microsoft.com/vs/older-downloads]
+   Make sure to add Microsoft Visual Studio to windows path 
+   [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
 
-5. add compiler_bindir_search_path inside custom_ops.py (open this folder inside StyleFlow-Windows-10 folder  ==>> dnnlib\tflib) 
+5. add compiler_bindir_search_path inside custom_ops.py 
+   (open this folder inside StyleFlow-Windows-10 folder  ==>> dnnlib\tflib) 
    [eg: ('C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.10.25017/bin/HostX64/x64',)]
 
 
