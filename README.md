@@ -34,7 +34,9 @@ git clone https://github.com/justinjohn0306/StyleFlow.git
 cd StyleFlow/
 ```
 
-This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please install dependencies by
+This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. 
+
+Please install dependencies by following these instuctions properly:
 
 1. conda env create -f env_windows.yml (Download and Install Anaconda): [Download Anaconda 64-Bit Graphical Installer]
                                                                        (https://www.anaconda.com/products/individual)
@@ -44,8 +46,10 @@ This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please
 3. conda install pytorch==1.2.0 torchvision==0.4.0 cudatoolkit=10.0 -c pytorch 
    [Also available here:(https://pytorch.org/get-started/previous-versions/)]
 										     
-4. Download and Install MICROSOFT VISUAL STUDIO COMMUNITY 2017: [https://visualstudio.microsoft.com/vs/older-downloads]
-   Make sure to add Microsoft Visual Studio to windows path 
+4. Download and Install Microsoft Visual Studio Community 2017 : [https://visualstudio.microsoft.com/vs/older-downloads]
+   Note: MSV17 is specifically required. MSVS19 won't work
+   
+   Make sure to add Microsoft Visual Studio to Windows path 
    [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
 
 5. add compiler_bindir_search_path inside custom_ops.py 
