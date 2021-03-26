@@ -53,7 +53,7 @@ Please install dependencies by following these instuctions properly:
    [eg-: (C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat)]
 
 5. add compiler_bindir_search_path inside custom_ops.py 
-   (open this folder inside StyleFlow-Windows-10 folder  ==>> dnnlib\tflib) 
+   (inside this folder: dnnlib\tflib) 
    [eg: ('C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.10.25017/bin/HostX64/x64',)]
 
 
