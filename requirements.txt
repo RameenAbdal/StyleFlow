@@ -84,7 +84,7 @@ python-dateutil==2.8.0
 pytools==2020.1
 pytz==2019.1
 pywavelets==1.0.3
-pyyaml==5.1.1
+pyyaml==5.4
 pyzmq==18.0.0
 qdarkgraystyle==1.0.2
 qdarkstyle==2.7
