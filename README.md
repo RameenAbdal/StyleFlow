@@ -101,7 +101,9 @@ Train your model:
 ```bash
    python train_flow.py 
 ```
+## Projection
 
+Our new projection method is currently under review. To be updated!
 
 ## License
 
