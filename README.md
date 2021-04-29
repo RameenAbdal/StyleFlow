@@ -115,6 +115,8 @@ xhost -local:docker
 A web based UI is also now available. The WebUI is based on [Streamlit](https://www.streamlit.io/) framework and is still in development phase. To get started, install streamlit from pip:
 ```bash
 pip install streamlit
+pip uninstall protobuf python3-protobuf
+pip install --upgrade pip
 pip install --upgrade protobuf
 ```
 Then run the streamlit app located under webui/ folder as follows:
