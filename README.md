@@ -112,9 +112,19 @@ xhost -local:docker
 
 
 ## Web UI (Beta)
-A web based UI is also now available. Follow [webui](https://github.com/RameenAbdal/StyleFlow/tree/webui) dev branch for setup.
+A web based UI is also now available. The WebUI is based on [Streamlit](https://www.streamlit.io/) framework and is still in development phase. To get started, install streamlit from pip:
+```bash
+pip install streamlit
+```
+Then run the streamlit app located under webui/ folder as follows:
+```bash
+cd webui
+streamlit run app.py
+```
+This should automatically open a new browser tab with the UI.
 
 ![image](./docs/assets/styleflow-web-final.gif)
+
 
 ## Training New Model
 Dataset containing sampled StyleGAN2 latents, lighting SH parameters and other attributes. ([Download Here](https://drive.google.com/file/d/1opdzeqpYWtE1uexO49JI-3_RWfE9MYlN/view?usp=sharing))
