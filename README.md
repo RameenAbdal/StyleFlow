@@ -134,7 +134,7 @@ keywords = {image editing, Generative adversarial networks}
 ```
 ```
 @INPROCEEDINGS{9008515,
-  author={R. {Abdal} and Y. {Qin} and P. {Wonka}},
+  author={Abdal, Rameen and Qin, Yipeng and Wonka, Peter},
   booktitle={2019 IEEE/CVF International Conference on Computer Vision (ICCV)}, 
   title={Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?}, 
   year={2019},
