@@ -25,18 +25,25 @@ do_not_hash_included_headers = False # Speed up compilation by assuming that hea
 verbose = True # Print status messages to stdout.
 
 compiler_bindir_search_path = [
-    'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.14.26428/bin/Hostx64/x64',
-    'C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.23.28105/bin/Hostx64/x64',
-    'C:/Program Files (x86)/Microsoft Visual Studio 14.0/vc/bin',
+    'C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.16.27023/bin/HostX64/x64',
 ]
 
 #----------------------------------------------------------------------------
 # Internal helper funcs.
 
 def _find_compiler_bindir():
+    
+    #Derive MSVC compiler path from compiler_bindir_search_path array
     for compiler_path in compiler_bindir_search_path:
         if os.path.isdir(compiler_path):
             return compiler_path
+    
+    #Derive MSVC compiler path from subdirectory tree
+    subdirectory_paths = [x[0] for x in os.walk('C:\\Program Files (x86)\\Microsoft Visual Studio\\')];
+    if subdirectory_paths is not None:
+        for directory_path in subdirectory_paths:
+            if _compiler_path_validator(directory_path):
+                return directory_path
     return None
 
 def _get_compute_cap(device):
@@ -61,9 +68,7 @@ def _run_cmd(cmd):
         raise RuntimeError('NVCC returned an error. See below for full command line and output log:\n\n%s\n\n%s' % (cmd, output))
 
 def _prepare_nvcc_cli(opts):
-    # cmd = 'nvcc ' + opts.strip()
-    cmd = '/usr/local/cuda/bin/nvcc --std=c++11 -DNDEBUG ' + opts.strip()
-
+    cmd = 'nvcc ' + opts.strip()
     cmd += ' --disable-warnings'
     cmd += ' --include-path "%s"' % tf.sysconfig.get_include()
     cmd += ' --include-path "%s"' % os.path.join(tf.sysconfig.get_include(), 'external', 'protobuf_archive', 'src')
@@ -80,6 +85,16 @@ def _prepare_nvcc_cli(opts):
         cmd += ' --compiler-bindir "%s"' % compiler_bindir
     cmd += ' 2>&1'
     return cmd
+
+def _compiler_path_validator(path):
+    if path is not None:
+        if path[:76] == 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\' and path[-16:] == '\\bin\\Hostx64\\x64':
+            return True
+        elif path[:76] == 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\' and path[-16:] == '\\bin\\Hostx64\\x64':
+            return True
+        elif path == 'C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\vc\\bin':
+            return True
+    return False
 
 #----------------------------------------------------------------------------
 # Main entry point.
