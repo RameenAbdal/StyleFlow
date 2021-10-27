@@ -13,7 +13,7 @@ chardet==3.0.4
 cloudpickle==1.2.1
 cycler==0.10.0
 cytoolz==0.9.0.1
-dask==2.1.0
+dask==2021.10.0
 decorator==4.4.0
 defusedxml==0.6.0
 deprecated==1.2.6
