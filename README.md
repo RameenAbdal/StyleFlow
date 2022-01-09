@@ -104,6 +104,7 @@ Train your model:
 ## Projection
 
 Our new projection method is currently under review. To be updated!
+Follow the repo for updates : https://github.com/ZPdesu/II2S
 
 ## License
 
