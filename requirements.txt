@@ -53,7 +53,7 @@ markdown==3.1.1
 markupsafe==1.1.1
 matplotlib==3.1.0
 mistune==0.8.4
-nbconvert==5.5.0
+nbconvert==6.3.0
 nbformat==4.4.0
 networkx==2.3
 notebook==5.7.8
