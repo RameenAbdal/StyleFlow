@@ -48,7 +48,7 @@ keras==2.2.4
 keras-applications==1.0.8
 keras-preprocessing==1.1.0
 kiwisolver==1.1.0
-mako==1.1.2
+mako==1.2.2
 markdown==3.1.1
 markupsafe==1.1.1
 matplotlib==3.1.0
