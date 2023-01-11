@@ -1,3 +1,7 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+
 import sys
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -33,8 +37,6 @@ from ui.real_time_attr_thread import RealTimeAttrThread
 from ui.real_time_light_thread import RealTimeLightThread
 
 # np.random.seed(2)
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 
 class ExWindow(QMainWindow):
@@ -291,7 +293,8 @@ class Ex(Ui_Form):
             for i in range(len(self.lighting_order)):
                 lighting_final += self.light_current_list[i] * self.pre_lighting_distance[i]
 
-            self.final_array_target[:, :9] = lighting_final
+            with torch.no_grad():
+                self.final_array_target[:, :9] = lighting_final
 
             self.rev = self.prior(self.fws[0], self.final_array_target, self.zero_padding, True)
             self.rev[0][0][0:7] = self.q_array[0][0:7]
@@ -318,7 +321,8 @@ class Ex(Ui_Form):
             attr_change = real_value * self.pre_attr_distance[attr_index]
             attr_final = attr_degree_list[attr_index] * attr_change + self.attr_current_list[attr_index]
 
-            self.final_array_target[0, attr_index + 9, 0, 0] = attr_final
+            with torch.no_grad():
+                self.final_array_target[0, attr_index + 9, 0, 0] = attr_final
 
             self.rev = self.prior(self.fws[0], self.final_array_target, self.zero_padding, True)
 
@@ -410,4 +414,4 @@ if __name__ == '__main__':
     app.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5())
     ex = ExWindow(opt)
     # ex = Ex(opt)
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
