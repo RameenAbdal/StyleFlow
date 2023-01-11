@@ -5,9 +5,14 @@ services:
   interface:
     build: .
     command: python3.7 /usr/app/main.py
-    volumes: 
+    volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       DISPLAY: $DISPLAY
       QT_X11_NO_MITSHM: 1
       QT_DEBUG_PLUGINS: 1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]

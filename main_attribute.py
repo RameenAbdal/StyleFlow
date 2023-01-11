@@ -23,7 +23,11 @@ from ui.ui2 import transfer_real_to_slide, invert_slide_to_real, light_transfer_
 import torch
 from module.flow import cnf
 import os
-import tensorflow as tf
+try:
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+except:
+    import tensorflow as tf
 
 from ui.real_time_attr_thread import RealTimeAttrThread
 from ui.real_time_light_thread import RealTimeLightThread
