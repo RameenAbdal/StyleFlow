@@ -52,7 +52,7 @@ def style_mixing_example(network_pkl, row_seeds, col_seeds, truncation_psi, col_
     all_z = np.stack([np.random.RandomState(seed).randn(*Gs.input_shape[1:]) for seed in all_seeds]) # [minibatch, component]
     all_w = Gs.components.mapping.run(all_z, None) # [minibatch, layer, component]
     all_w = w_avg + (all_w - w_avg) * truncation_psi # [minibatch, layer, component]
-    w_dict = {seed: w for seed, w in zip(all_seeds, list(all_w))} # [layer, component]
+    w_dict = dict(zip(all_seeds, list(all_w))) # [layer, component]
 
     print('Generating images...')
     all_images = Gs.components.synthesis.run(all_w, **Gs_syn_kwargs) # [minibatch, height, width, channel]

@@ -10,7 +10,6 @@ import scipy.ndimage
 
 import numpy as np
 import PIL.Image
-import dnnlib
 import dnnlib.tflib as tflib
 import os
 import re
@@ -142,7 +141,9 @@ def get_style_loss(base_style, gram_target):
 
 #----------------------------------------------------------------------------
 
-def generate_im_official(network_pkl='gdrive:networks/stylegan2-ffhq-config-f.pkl', seeds=[22], truncation_psi=0.5):
+def generate_im_official(network_pkl='gdrive:networks/stylegan2-ffhq-config-f.pkl', seeds=None, truncation_psi=0.5):
+    if seeds is None:
+        seeds = [22]
     print('Loading networks from "%s"...' % network_pkl)
     _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
     noise_vars = [var for name, var in Gs.components.synthesis.vars.items() if name.startswith('noise')]

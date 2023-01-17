@@ -59,7 +59,7 @@ def get_path_or_url(path_or_gdrive_path):
 
 #----------------------------------------------------------------------------
 
-_cached_networks = dict()
+_cached_networks = {}
 
 def load_networks(path_or_gdrive_path):
     path_or_url = get_path_or_url(path_or_gdrive_path)

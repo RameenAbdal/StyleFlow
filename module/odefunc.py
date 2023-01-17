@@ -134,9 +134,8 @@ class ODEfunc(nn.Module):
                 divergence = self.divergence_fn(dy, y, e=self._e).unsqueeze(-1)
 
                 return dy, -divergence, torch.zeros_like(c).requires_grad_(True)
-            elif len(states) == 2:  # unconditional CNF
+            if len(states) == 2:  # unconditional CNF
                 dy = self.diffeq(t, y)
                 divergence = self.divergence_fn(dy, y, e=self._e).view(-1, 1)
                 return dy, -divergence
-            else:
-                assert 0, "`len(states)` should be 2 or 3"
+            assert 0, "`len(states)` should be 2 or 3"

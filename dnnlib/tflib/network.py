@@ -23,7 +23,7 @@ from .. import util
 from .tfutil import TfExpression, TfExpressionEx
 
 _import_handlers = []  # Custom import handlers for dealing with legacy data in pickle import.
-_import_module_src = dict()  # Source code for temporary modules created during pickle import.
+_import_module_src = {}  # Source code for temporary modules created during pickle import.
 
 
 def import_handler(handler_func):
@@ -120,7 +120,7 @@ class Network:
         self._build_func = None  # User-supplied build function that constructs the network.
         self._build_func_name = None  # Name of the build function.
         self._build_module_src = None  # Full source code of the module containing the build function.
-        self._run_cache = dict()  # Cached graph data for Network.run().
+        self._run_cache = {}  # Cached graph data for Network.run().
 
     def _init_graph(self) -> None:
         # Collect inputs.
@@ -254,7 +254,7 @@ class Network:
 
     def __getstate__(self) -> dict:
         """Pickle export."""
-        state = dict()
+        state = {}
         state["version"]            = 4
         state["name"]               = self.name
         state["static_kwargs"]      = dict(self.static_kwargs)

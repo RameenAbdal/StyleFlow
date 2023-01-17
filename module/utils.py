@@ -106,7 +106,9 @@ def set_random_seed(seed):
 
 
 # Visualization
-def visualize_point_clouds(pts, gtr, idx, pert_order=[0, 1, 2]):
+def visualize_point_clouds(pts, gtr, idx, pert_order=None):
+    if pert_order is None:
+        pert_order = [0, 1, 2]
     pts = pts.cpu().detach().numpy()[:, pert_order]
     gtr = gtr.cpu().detach().numpy()[:, pert_order]
 

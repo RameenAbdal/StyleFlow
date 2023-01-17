@@ -40,8 +40,7 @@ class MovingBatchNormNd(nn.Module):
     def forward(self, x, c=None, logpx=None, reverse=False):
         if reverse:
             return self._reverse(x, logpx)
-        else:
-            return self._forward(x, logpx)
+        return self._forward(x, logpx)
 
     def _forward(self, x, logpx=None):
         num_channels = x.size(-1)
@@ -87,8 +86,7 @@ class MovingBatchNormNd(nn.Module):
 
         if logpx is None:
             return y
-        else:
-            return y, logpx - self._logdetgrad(x, used_var).sum(-1, keepdim=True)
+        return y, logpx - self._logdetgrad(x, used_var).sum(-1, keepdim=True)
 
     def _reverse(self, y, logpy=None):
         used_mean = self.running_mean
@@ -105,8 +103,7 @@ class MovingBatchNormNd(nn.Module):
 
         if logpy is None:
             return x
-        else:
-            return x, logpy + self._logdetgrad(x, used_var).sum(-1, keepdim=True)
+        return x, logpy + self._logdetgrad(x, used_var).sum(-1, keepdim=True)
 
     def _logdetgrad(self, x, used_var):
         logdetgrad = -0.5 * torch.log(used_var + self.eps)

@@ -129,10 +129,9 @@ def get_path_from_template(path_template: str, path_type: PathType = PathType.AU
     # return correctly formatted path
     if path_type == PathType.WINDOWS:
         return str(pathlib.PureWindowsPath(path_template))
-    elif path_type == PathType.LINUX:
+    if path_type == PathType.LINUX:
         return str(pathlib.PurePosixPath(path_template))
-    else:
-        raise RuntimeError("Unknown platform")
+    raise RuntimeError("Unknown platform")
 
 
 def get_template_from_path(path: str) -> str:
@@ -158,9 +157,9 @@ def get_user_name():
     """Get the current user name."""
     if _user_name_override is not None:
         return _user_name_override
-    elif platform.system() == "Windows":
+    if platform.system() == "Windows":
         return os.getlogin()
-    elif platform.system() == "Linux":
+    if platform.system() == "Linux":
         try:
             import pwd
             return pwd.getpwuid(os.geteuid()).pw_name
@@ -283,15 +282,14 @@ def run_wrapper(submit_config: SubmitConfig) -> None:
     except:
         if is_local:
             raise
-        else:
-            traceback.print_exc()
+        traceback.print_exc()
 
-            log_src = os.path.join(submit_config.run_dir, "log.txt")
-            log_dst = os.path.join(get_path_from_template(submit_config.run_dir_root), "{0}-error.txt".format(submit_config.run_name))
-            shutil.copyfile(log_src, log_dst)
+        log_src = os.path.join(submit_config.run_dir, "log.txt")
+        log_dst = os.path.join(get_path_from_template(submit_config.run_dir_root), "{0}-error.txt".format(submit_config.run_name))
+        shutil.copyfile(log_src, log_dst)
 
-            # Defer sys.exit(1) to happen after we close the logs and create a _finished.txt
-            exit_with_errcode = True
+        # Defer sys.exit(1) to happen after we close the logs and create a _finished.txt
+        exit_with_errcode = True
     finally:
         open(os.path.join(submit_config.run_dir, "_finished.txt"), "w").close()
 
