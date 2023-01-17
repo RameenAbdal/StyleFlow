@@ -1,7 +1,11 @@
 import PIL.Image
 import dnnlib
 import dnnlib.tflib as tflib
-import tensorflow as tf
+try:
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+except:
+    import tensorflow as tf
 
 
 import PIL.ImageFile

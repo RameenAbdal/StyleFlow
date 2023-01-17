@@ -6,6 +6,7 @@
 
 """List of pre-trained StyleGAN2 networks located on Google Drive."""
 
+import io
 import pickle
 import dnnlib
 import dnnlib.tflib as tflib
@@ -70,6 +71,22 @@ def load_networks(path_or_gdrive_path):
         stream = dnnlib.util.open_url(path_or_url, cache_dir='.stylegan2-cache')
     else:
         stream = open(path_or_url, 'rb')
+
+    try:
+        import tensorflow.compat.v1 as tf
+        tf.disable_v2_behavior()
+
+        # For tensorflow v2.0 we need to change imports inside checkpoint code:
+        with stream:
+            data = stream.read()
+
+        # Change imports to support tensorflow v2
+        data = data.replace(b'import tensorflow as tf', b'import tensorflow.compat.v1 as tf\ntf.disable_v2_behavior()')
+        # This tricky replace allows to preserve file size
+        data = data.replace(b'Network architectures used in the StyleGAN2 paper.', b'tyleGAN2 paper.')
+        stream = io.BytesIO(data)
+    except:
+        import tensorflow as tf
 
     tflib.init_tf()
     with stream:

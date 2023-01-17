@@ -12,7 +12,11 @@ import re
 import uuid
 import sys
 import numpy as np
-import tensorflow as tf
+try:
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+except:
+    import tensorflow as tf
 
 from collections import OrderedDict
 from typing import Any, List, Tuple, Union

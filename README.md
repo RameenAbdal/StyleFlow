@@ -31,12 +31,16 @@ git clone https://github.com/RameenAbdal/StyleFlow.git
 cd StyleFlow/
 ```
 
+StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).
+```bash
+# This packages are enough to fulfill all requirements (at least for WSL Ubuntu>=20.04 installation)
+sudo apt install cmake g++ gnupg nvidia-cuda-toolkit
+```
+
 This code requires PyTorch, TensorFlow, Torchdiffeq, Python 3+ and Pyqt5. Please install dependencies by
 ```bash
 conda env create -f environment.yml
 ```
-
-StyleGAN2 relies on custom TensorFlow ops that are compiled on the fly using [NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html). To correctly setup the StyleGAN2 generator follow the **Requirements** in [this repo](https://github.com/NVlabs/stylegan2).
 
 ## Installation (Docker)
 
@@ -47,7 +51,7 @@ git clone https://github.com/RameenAbdal/StyleFlow.git
 cd StyleFlow/
 ```
 
-You must have CUDA (>=10.0 && <11.0) and [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) installed first !
+You must have CUDA >=10.0 and [nvidia-docker2](https://github.com/NVIDIA/nvidia-docker) installed first !
 
 Then, run :
 
@@ -84,7 +88,7 @@ xhost -local:docker
 
 2. Run the Attribute Transfer UI
 	```bash
-   python main_attribute.py 
+   python main_attribute.py
     ```
 
 ## Web UI (Beta)
@@ -99,7 +103,7 @@ Create `./data_numpy/` in the main folder and extract the above data or create y
 
 Train your model:
 ```bash
-   python train_flow.py 
+   python train_flow.py
 ```
 ## Projection
 
@@ -136,8 +140,8 @@ keywords = {image editing, Generative adversarial networks}
 ```
 @INPROCEEDINGS{9008515,
   author={Abdal, Rameen and Qin, Yipeng and Wonka, Peter},
-  booktitle={2019 IEEE/CVF International Conference on Computer Vision (ICCV)}, 
-  title={Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?}, 
+  booktitle={2019 IEEE/CVF International Conference on Computer Vision (ICCV)},
+  title={Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?},
   year={2019},
   volume={},
   number={},

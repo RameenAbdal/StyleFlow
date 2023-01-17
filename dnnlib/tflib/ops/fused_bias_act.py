@@ -8,7 +8,14 @@
 
 import os
 import numpy as np
-import tensorflow as tf
+try:
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
+    force_ref_impl = True
+except:
+    import tensorflow as tf
+    force_ref_impl = False
+
 from .. import custom_ops
 from ...util import EasyDict
 
@@ -65,7 +72,7 @@ def fused_bias_act(x, b=None, axis=1, act='linear', alpha=None, gain=None, impl=
         'ref':  _fused_bias_act_ref,
         'cuda': _fused_bias_act_cuda,
     }
-    return impl_dict[impl](x=x, b=b, axis=axis, act=act, alpha=alpha, gain=gain)
+    return impl_dict['ref' if force_ref_impl else impl](x=x, b=b, axis=axis, act=act, alpha=alpha, gain=gain)
 
 #----------------------------------------------------------------------------
 
