@@ -115,7 +115,7 @@ traitlets==4.3.2
 urllib3==1.25.3
 wcwidth==0.1.7
 webencodings==0.5.1
-werkzeug==0.15.4
+werkzeug==0.15.5
 widgetsnbextension==3.4.2
 wrapt==1.11.2
 zipp==0.5.2
