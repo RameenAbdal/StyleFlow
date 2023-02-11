@@ -34,7 +34,7 @@ imageio==2.5.0
 importlib-metadata==0.18
 imutils==0.5.3
 ipykernel==5.1.1
-ipython==7.6.0
+ipython==8.10.0
 ipython-genutils==0.2.0
 ipywidgets==7.4.2
 jedi==0.13.3
