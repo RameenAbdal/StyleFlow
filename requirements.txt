@@ -74,7 +74,7 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.19
 pycuda==2019.1.2
-pygments==2.4.2
+pygments==2.7.4
 pyparsing==2.4.0
 pyqt5==5.13.0
 pyqt5-sip==4.19.18
