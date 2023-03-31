@@ -58,7 +58,7 @@ nbformat==4.4.0
 networkx==2.3
 notebook==5.7.8
 oauthlib==3.1.0
-opencv-python==4.1.0.25
+opencv-python==4.2.0.32
 opt-einsum==3.2.1
 pandocfilters==1.4.2
 parso==0.5.0
